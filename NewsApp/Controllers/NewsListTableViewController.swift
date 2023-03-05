@@ -40,6 +40,10 @@ class NewsListTableViewController: UITableViewController {
         }
 }
     
+        override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return self.articleListVM == nil ? self.articleListVM.heightForRow : UITableView.automaticDimension
+        }
+    
         override func numberOfSections(in tableView: UITableView) -> Int {
             return self.articleListVM ==  nil ? 0 : self.articleListVM.numberOfSections
         }

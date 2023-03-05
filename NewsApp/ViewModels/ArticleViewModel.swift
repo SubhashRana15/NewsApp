@@ -15,6 +15,10 @@ struct ArticleListViewModel {
 
 extension ArticleListViewModel {
     
+    var heightForRow: CGFloat {
+        return 30.0
+    }
+    
     var numberOfSections: Int {
         return 1
     }
