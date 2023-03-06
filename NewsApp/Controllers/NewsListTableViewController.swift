@@ -61,6 +61,7 @@ class NewsListTableViewController: UITableViewController {
 
             cell.titleLabel.text = articleVM.title
             cell.descriptionLabel.text = articleVM.description
+            cell.imgView.setImage(with: articleVM.imageUrl)
             print("Rana: \(articleVM.title)")
             return cell
         }
@@ -69,7 +70,7 @@ class NewsListTableViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
 
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .systemTeal
+        appearance.backgroundColor = .systemMint
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
 
@@ -78,7 +79,6 @@ class NewsListTableViewController: UITableViewController {
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
-    
 }
 
 
