@@ -26,15 +26,13 @@ class NewsListTableViewController: UITableViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         UINavigationBar.appearance().barTintColor = UIColor(displayP3Red: 47/255, green: 54/255, blue: 64/255, alpha: 1.0)
         
-        let url = URL(string: "https://newsapi.org/v2/top-headlines?country=us&apiKey=47b36834f5004248a4cb6ebe2be73f1f")!
-        
-        WebService().getArticles(url: url) { articles in
+       
+        WebService().getArticles(url: API_URL) { articles in
             
             if let articles = articles {
                 self.articleListVM = ArticleListViewModel(articles: articles)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-                    print("Rana: \(self.articleListVM.articles[0].title)")
                 }
             }
         }
@@ -53,8 +51,8 @@ class NewsListTableViewController: UITableViewController {
         }
 
         override func tableView(_ tableView: UITableView, cellForRowAt indexpath: IndexPath) -> UITableViewCell {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell", for: indexpath) as? ArticleTableViewCell else {
-                fatalError("Cell not found")
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFIER, for: indexpath) as? ArticleTableViewCell else {
+                fatalError(CELL_NOT_FOUND)
             }
 
             let articleVM = self.articleListVM.articleAtIndex(indexpath.row)
@@ -62,7 +60,6 @@ class NewsListTableViewController: UITableViewController {
             cell.titleLabel.text = articleVM.title
             cell.descriptionLabel.text = articleVM.description
             cell.imgView.setImage(with: articleVM.imageUrl)
-            print("Rana: \(articleVM.title)")
             return cell
         }
     
